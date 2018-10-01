@@ -28,7 +28,7 @@ class MovementManager:
         self.gameState.my_ship = self.calculate_ship_movement(self.gameState.my_ship)
         self.gameState.enemy_ship = self.calculate_ship_movement(self.gameState.enemy_ship)
 
-        for i in self.gameState.asteroid
-            i.
+        for i in self.gameState.asteroid:
+            i.pos = i.pos + i.pos_delta
         for i in self.gameState.bullets:
-            pass
+            i.pos = i.pos + i.pos_delta
