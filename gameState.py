@@ -1,4 +1,5 @@
 """#Shows the Game state for each object"""
+from typing import List
 
 from ship import Ship
 from bullets import Bullet
@@ -11,8 +12,8 @@ class GameState:
         self.enemy_ship = Ship(enemy_ship)
         bullets_array = [Bullet() for _ in range(10)]
         self.bullets = bullets_array(bullets)
-        asteroid_array = [Asteroid() for _ in range(100)]
-        self.asteroid = asteroid_array(asteroid)
+        asteroid_array: List[Asteroid] = [Asteroid() for _ in range(100)]
+        self.asteroid: List[Asteroid] = asteroid_array(asteroid)
 
     def get_ship_state(self):
         return self.my_ship

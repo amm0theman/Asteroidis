@@ -6,6 +6,10 @@ class Point:
         self.x = float(x)
         self.y = float(y)
 
+    def __add__(self, other):
+        self.x = self.x + other.x
+        self.y = self.y + other.y
+
     '# X is a float between 0 and 1'
     def set_x(self, x):
         if x <= 1 & x >= 0:

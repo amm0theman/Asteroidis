@@ -3,11 +3,11 @@ from point import Point
 
 
 class Ship:
-    def __init__(self, pos, pos_delta, heading, acceleration):
-        self.pos = Point(pos)
-        self.pos_delta = Point(pos_delta)
-        self.heading = heading
-        self.acceleration = acceleration
+    def __init__(self, pos: Point, pos_delta: Point, heading: float, acceleration: float):
+        self.pos: Point = pos
+        self.pos_delta: Point = pos_delta
+        self.heading: float = heading
+        self.acceleration: float = acceleration
 
     def get_pos(self):
         return self.pos
