@@ -12,6 +12,9 @@ class CollisionManager:
     #
     def if_intersect(self):
         for i in self.game_state.asteroid:
+            if self.game_state.my_ship.pos == i.pos:
+                #they have collided
+                pass
 
 
 
