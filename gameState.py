@@ -1,5 +1,4 @@
 """#Shows the Game state for each object"""
-import range as range
 
 from ship import Ship
 from bullets import Bullet
