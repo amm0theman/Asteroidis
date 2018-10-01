@@ -21,7 +21,6 @@ def draw_screen():
 
 running = True
 while running:
-    pygame.time.delay(100)
     for event in pygame.event.get():
         '# When x button pushed quit game'
         if event.type == pygame.QUIT:
