@@ -9,8 +9,10 @@ class GameState:
     def __init__(self, my_ship, enemy_ship, bullets, asteroid):
         self.my_ship = Ship(my_ship)
         self.enemy_ship = Ship(enemy_ship)
-        self.bullets = Bullet(bullets)
-        self.asteroid = Asteroid(asteroid)
+        bullets_array = [Bullet() for _ in range(10)]
+        self.bullets = bullets_array(bullets)
+        asteroid_array = [Asteroid() for _ in range(100)]
+        self.asteroid = asteroid_array(asteroid)
 
     def get_ship_state(self):
         return self.my_ship
