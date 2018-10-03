@@ -1,35 +1,34 @@
 import pygame
-import time
-import ship
-
-'# Initialize game window and settings etc.'
-pygame.init()
-window = pygame.display.set_mode((500, 500))
-pygame.display.set_caption("Asteroids")
+from ship import Ship
+from point import Point
 
 
-def render():
-    window.fill((0, 0, 0))
-    pygame.display.update()
+def run_game():
+    pygame.init()
+
+    '# Initialize game window and settings etc.'
+    screen = pygame.display.set_mode(
+        (500, 500))
+    pygame.display.set_caption("Asteroids")
+
+    ship = Ship(screen, Point(50, 50), Point(50, 50), 2.5, 1.5)
+
+    running = True
+
+    while running:
+
+        ship.blitme()
+
+        for event in pygame.event.get():
+            '# When x button pushed quit game'
+            if event.type == pygame.QUIT:
+                running = False
+
+        '# Sets the screen to next render'
+        pygame.display.flip()
 
 
-def update_game():
-    True
+run_game()
 
 
-running = True
-while running:
-    time.sleep(.016666666666)
-    update_game()
 
-    ship.blitme()
-
-    for event in pygame.event.get():
-        '# When x button pushed quit game'
-        if event.type == pygame.QUIT:
-            running = False
-
-    '# Clear the screen before drawing stuff'
-    render()
-
-pygame.quit()
