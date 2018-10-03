@@ -30,3 +30,4 @@ class Asteroid:
 
     def set_size(self, size):
         self.size = size
+

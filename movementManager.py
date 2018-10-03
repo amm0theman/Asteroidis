@@ -34,5 +34,3 @@ class MovementManager:
             i.pos = i.pos + i.pos_delta * self.renderPace
         for i in self.gameState.bullets:
             i.pos = i.pos + i.pos_delta * self.renderPace
-
-
