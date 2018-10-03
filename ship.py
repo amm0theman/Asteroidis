@@ -15,7 +15,8 @@ class Ship:
 
         self.image = pygame.image.load('venv/images/ship.bmp')
         self.image = pygame.transform.scale(self.image, (80, 60))
-        self.rect = self.image.get_rect()
+        rect = self.image.get_rect()
+        pygame.mask.from_surface(screen, threshold=127)
 
     def get_pos(self):
         return self.pos
