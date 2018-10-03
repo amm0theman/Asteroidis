@@ -18,6 +18,7 @@ class Ship(IShipState):
         self.image = pygame.image.load('venv/images/ship.bmp')
         self.image = pygame.transform.scale(self.image, (80, 60))
         self.rect = self.image.get_rect()
+        pygame.mask.from_surface(self.image, 127)
 
     def blitme(self):
         self.screen.blit(self.image, self.rect)
