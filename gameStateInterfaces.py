@@ -11,7 +11,7 @@ class IShipState:
         pass
 
     @abc.abstractmethod
-    def intersect_event(self):
+    def intersect_event(self, arg):
         pass
 
     @abc.abstractmethod

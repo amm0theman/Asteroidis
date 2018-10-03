@@ -1,34 +1,36 @@
 import pygame
-from ship import Ship
-from point import Point
+from gameState import GameState
 
 
-def run_game():
-    pygame.init()
+class GameLoop:
+    def __init__(self):
+        '# Initialize game window and settings etc.'
+        self.screen = pygame.display.set_mode(
+            (1000, 1000))
+        pygame.display.set_caption("Asteroids")
+        self.game_active = True
+        self.game_state = GameState(None, None, None, None)
 
-    '# Initialize game window and settings etc.'
-    screen = pygame.display.set_mode(
-        (500, 500))
-    pygame.display.set_caption("Asteroids")
-
-    ship = Ship(screen, Point(50, 50), Point(50, 50), 2.5, 1.5)
-
-    running = True
-
-    while running:
-
-        ship.blitme()
-
+    def handle_events(self):
         for event in pygame.event.get():
             '# When x button pushed quit game'
             if event.type == pygame.QUIT:
-                running = False
+                self.game_active = False
 
         '# Sets the screen to next render'
         pygame.display.flip()
 
+    def update_game(self):
+        pass
 
-run_game()
+    def render_game(self):
+        pass
 
+    """Main game loop"""
+    def run_game(self):
+        pygame.init()
 
-
+        while self.game_active:
+            self.handle_events()
+            self.update_game()
+            self.render_game()
