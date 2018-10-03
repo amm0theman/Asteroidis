@@ -12,8 +12,8 @@ class CollisionManager:
     def if_intersect(self):
         for i in self.game_state.asteroid:
             if pygame.sprite.collide_circle(self.game_state.my_ship, i):
-                print("Game Over")
                 '#i die'
+                pass
 
         for i in self.game_state.bullets:
             if pygame.sprite.collide_circle(self.game_state.asteroid, i):
@@ -22,8 +22,8 @@ class CollisionManager:
 
         for i in self.game_state.bullets:
             if pygame.sprite.collide_circle(self.game_state.my_ship, i):
-                print("Game over")
                 '#I die'
+                pass
 
         for i in self.game_state.bullets:
             if pygame.sprite.collide_circle(self.game_state.enemy_ship, i):
