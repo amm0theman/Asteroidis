@@ -2,7 +2,7 @@
 from typing import List
 
 from ship import Ship
-from bullets import Bullet
+from bullet import Bullet
 from asteroid import Asteroid
 
 

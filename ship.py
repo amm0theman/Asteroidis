@@ -1,6 +1,7 @@
 """#Point class representing ship controlled by player"""
-
+from functools import singledispatch
 from point import Point
+from bullet import Bullet
 import pygame
 
 
@@ -41,3 +42,11 @@ class Ship:
 
     def blitme(self):
         self.screen.blit(self.image, self.circle)
+
+    @singledispatch
+    def intersect_event(self, arg):
+        pass
+
+    @intersect_event.register(Bullet)
+    def _(self, arg: Bullet):
+        pass

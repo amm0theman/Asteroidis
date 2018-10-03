@@ -17,7 +17,7 @@ class CollisionManager:
 
         for i in self.game_state.bullets:
             if pygame.sprite.collide_circle(self.game_state.asteroid, i):
-                '#add points? asteroid does'
+                '#add points? asteroid dies'
                 pass
 
         for i in self.game_state.bullets:
