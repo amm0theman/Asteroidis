@@ -12,8 +12,9 @@ class Ship:
         self.heading: float = heading
         self.acceleration: float = acceleration
 
-        self.image = pygame.image.load('images/ship.png')
-        self.circle = self.image.get_circle()
+        self.image = pygame.image.load('venv/images/ship.bmp')
+        self.image = pygame.transform.scale(self.image, (80, 60))
+        self.rect = self.image.get_rect()
 
     def get_pos(self):
         return self.pos
@@ -40,4 +41,4 @@ class Ship:
         self.acceleration = acceleration
 
     def blitme(self):
-        self.screen.blit(self.image, self.circle)
+        self.screen.blit(self.image, self.rect)
