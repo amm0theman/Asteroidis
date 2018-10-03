@@ -1,5 +1,6 @@
 import pygame
 import time
+import ship
 
 '# Initialize game window and settings etc.'
 pygame.init()
@@ -20,6 +21,8 @@ running = True
 while running:
     time.sleep(.016666666666)
     update_game()
+
+    ship.blitme()
 
     for event in pygame.event.get():
         '# When x button pushed quit game'
