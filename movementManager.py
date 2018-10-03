@@ -14,21 +14,25 @@ class MovementManager:
     def set_pace(self, render_pace):
         self.renderPace = render_pace
 
-    @staticmethod
-    def calculate_ship_movement(ship: Ship):
-        ship.pos = ship.pos + ship.pos_delta
+    def calculate_ship_movement(self, ship: Ship):
+        ship.pos = ship.pos + ship.pos_delta * self.renderPace
         return ship
 
-    @staticmethod
-    def calculate_asteroid_movement(asteroid: Asteroid):
-        asteroid.pos = asteroid.pos + asteroid.pos_delta
+    def calculate_asteroid_movement(self, asteroid: Asteroid):
+        asteroid.pos = asteroid.pos + asteroid.pos_delta * self.renderPace
         return asteroid
 
     def calculate_movement(self):
+        """Calculates movement for all game objects in the game state"""
+
+        '# Calculate ships movements'
         self.gameState.my_ship = self.calculate_ship_movement(self.gameState.my_ship)
         self.gameState.enemy_ship = self.calculate_ship_movement(self.gameState.enemy_ship)
 
+        '# Calculate movement for asteroids and for bullets'
         for i in self.gameState.asteroid:
-            i.pos = i.pos + i.pos_delta
+            i.pos = i.pos + i.pos_delta * self.renderPace
         for i in self.gameState.bullets:
-            i.pos = i.pos + i.pos_delta
+            i.pos = i.pos + i.pos_delta * self.renderPace
+
+
