@@ -10,6 +10,10 @@ class Point:
         self.x = self.x + other.x
         self.y = self.y + other.y
 
+    def __mul__(self, modifier: float):
+        self.x *= modifier
+        self.y *= modifier
+
     '# X is a float between 0 and 1'
     def set_x(self, x):
         if x <= 1 & x >= 0:

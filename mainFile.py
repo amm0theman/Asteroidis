@@ -12,23 +12,21 @@ def render():
     pygame.display.update()
 
 
-def update_game(time, dt):
+def update_game():
     True
 
 
 running = True
-time = time.time()
 while running:
-        update_game(time)
+    time.sleep(.016666666666)
+    update_game()
 
-        for event in pygame.event.get():
-            '# When x button pushed quit game'
-            if event.type == pygame.QUIT:
-                running = False
+    for event in pygame.event.get():
+        '# When x button pushed quit game'
+        if event.type == pygame.QUIT:
+            running = False
 
-
-
-        '# Clear the screen before drawing stuff'
-        render()
+    '# Clear the screen before drawing stuff'
+    render()
 
 pygame.quit()
