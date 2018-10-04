@@ -6,10 +6,9 @@ from command import Command
 
 
 class MovementManager:
-    def __init__(self, game_state, render_pace, command):
+    def __init__(self, game_state, render_pace):
         self.gameState: GameState = game_state
         self.renderPace = render_pace
-        self.command: Command = command
 
     def set_pace(self, render_pace):
         self.renderPace = render_pace
@@ -21,6 +20,9 @@ class MovementManager:
     def calculate_asteroid_movement(self, asteroid: Asteroid):
         asteroid.pos = asteroid.pos + asteroid.pos_delta * self.renderPace
         return asteroid
+
+    def calculate_rotation(self):
+        pass
 
     def calculate_movement(self):
         """Calculates movement for all game objects in the game state"""
@@ -34,3 +36,5 @@ class MovementManager:
             i.pos = i.pos + i.pos_delta * self.renderPace
         for i in self.gameState.bullets:
             i.pos = i.pos + i.pos_delta * self.renderPace
+
+        return self.gameState
