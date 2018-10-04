@@ -8,11 +8,6 @@ class Bullet:
         self.pos_delta = Point(pos_delta)
         self.ttl = float(ttl)
 
-    def __init__(self):
-        self.pos = None
-        self.pos_delta = None
-        self.ttl = None
-
     def get_pos(self):
         return self.pos
 
