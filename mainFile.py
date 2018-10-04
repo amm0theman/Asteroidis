@@ -1,15 +1,17 @@
 import pygame
 from gameState import GameState
+from movementManager import MovementManager
 
 
-class GameLoop:
+class Game:
+    """Contains game loop and game objects, and manages them"""
     def __init__(self):
-        '# Initialize game window and settings etc.'
         self.screen = pygame.display.set_mode(
             (1000, 1000))
         pygame.display.set_caption("Asteroids")
         self.game_active = True
         self.game_state = GameState(None, None, None, None)
+        self.MovementManager = MovementManager(None, None, None)
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -20,9 +22,11 @@ class GameLoop:
         '# Sets the screen to next render'
         pygame.display.flip()
 
+    """Update Models for next frame"""
     def update_game(self):
         pass
 
+    """Draw next frame and game objects"""
     def render_game(self):
         pass
 
