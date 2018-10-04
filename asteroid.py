@@ -8,11 +8,6 @@ class Asteroid:
         self.pos_delta = Point(pos_delta)
         self.size = float(size)
 
-    def __init__ (self):
-        self.pos = None
-        self.pos_delta = None
-        self.size = None
-
     def get_pos(self):
         return self.pos
 
