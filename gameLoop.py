@@ -2,7 +2,7 @@ import pygame
 from gameState import GameState
 from point import Point
 from ship import Ship
-
+from asteroid import Asteroid
 
 class GameLoop:
     def __init__(self):
@@ -11,9 +11,11 @@ class GameLoop:
             (1000, 1000))
         pygame.display.set_caption("Asteroids")
         self.game_active = True
+
         self.ship = Ship(self.screen, Point(40, 60), Point(50, 100), 100, 5)
         self.enemy_ship = Ship(self.screen, Point(100, 60), Point(100, 100), 100, 5)
-        self.game_state = GameState(self.ship, self.enemy_ship, 50,50)
+        self.asteroids = Asteroid(self.screen, Point(100,100), Point(100,500), 50)
+        self.game_state = GameState(self.ship, self.enemy_ship, 50, 50)
 
     def handle_events(self):
         for event in pygame.event.get():

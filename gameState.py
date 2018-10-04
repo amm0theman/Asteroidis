@@ -8,8 +8,8 @@ from asteroid import Asteroid
 
 class GameState:
     def __init__(self, my_ship, enemy_ship, bullets, asteroid):
-        self.my_ship = Ship(my_ship)
-        self.enemy_ship = Ship(enemy_ship)
+        self.my_ship: Ship = my_ship
+        self.enemy_ship: Ship = enemy_ship
         bullets_array: List[Bullet] = [Bullet() for _ in range(100)]
         self.bullets: List[Bullet] = bullets_array
         asteroid_array: List[Asteroid] = [Asteroid() for _ in range(100)]
