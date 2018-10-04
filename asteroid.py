@@ -1,17 +1,17 @@
 """Asteroid object in the game"""
 from point import Point
+import pygame
 
 
 class Asteroid:
-    def __init__(self, pos, pos_delta, size):
-        self.pos = Point(pos)
-        self.pos_delta = Point(pos_delta)
+    def __init__(self, screen, pos: Point, pos_delta: Point, size):
+        self.screen = screen
+        self.pos: Point = pos
+        self.pos_delta: Point = pos_delta
         self.size = float(size)
 
-    def __init__ (self):
-        self.pos = None
-        self.pos_delta = None
-        self.size = None
+        self.image = pygame.image.load('venv/images/asteroid.bmp')
+        self.image = pygame.transform.scale(self.image, (80, 60))
 
     def get_pos(self):
         return self.pos
@@ -31,3 +31,5 @@ class Asteroid:
     def set_size(self, size):
         self.size = size
 
+    def blitme(self, posx, posy):
+        self.screen.blit(self.image, (posx, posy))
