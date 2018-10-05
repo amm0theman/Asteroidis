@@ -2,11 +2,11 @@
 
 
 class Command:
-    def __init__(self, shoot, accel, right, left):
-        self.shoot = bool(shoot)
-        self.accel = bool(accel)
-        self.right = bool(right)
-        self.left = bool(left)
+    def __init__(self):
+        self.shoot: bool = None
+        self.accel: bool = None
+        self.right: bool = None
+        self.left: bool = None
 
     def get_shoot(self):
         return self.shoot

@@ -4,6 +4,7 @@ from point import Point
 from ship import Ship
 from asteroid import Asteroid
 from movementManager import MovementManager
+from command import Command
 
 
 class GameLoop:
@@ -17,19 +18,39 @@ class GameLoop:
 
         self.ship = Ship(self.screen, Point(40, 60), Point(50, 100), 100, 5)
         self.enemy_ship = Ship(self.screen, Point(100, 60), Point(100, 100), 100, 5)
-        self.asteroids = Asteroid(self.screen, Point(100,100), Point(100,500), 50)
+        self.asteroids = Asteroid(self.screen, Point(100, 100), Point(100, 500), 50)
         self.game_state = GameState(self.ship, self.enemy_ship, 50, 50)
         self.movement_manager = MovementManager(self.game_state, self.render_pace)
 
     def handle_events(self):
+
+        command_ship1 = Command()
+        command_ship2 = Command()
+
         for event in pygame.event.get():
             '# When x button pushed quit game'
-            if event.type == pygame.QUIT:
-                self.game_active = False
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                self.game_active = True
+            if event.type == pygame.KEYDOWN:
+                if event == pygame.K_w:
+                    command_ship1.accel = True
+                elif event == pygame.K_a:
+                    command_ship1.right = True
+                elif event == pygame.K_d:
+                    command_ship1.left = True
+                elif event == pygame.K_SPACE:
+                    command_ship1.shoot = True
+            elif event.type == pygame.KEYUP:
+                if event == pygame.K_w:
+                    command_ship1.accel = False
+                elif event == pygame.K_a:
+                    command_ship1.right = False
+                elif event == pygame.K_d:
+                    command_ship1.left = False
+                elif event == pygame.K_SPACE:
+                    command_ship1.shoot = False
 
-        '# Sets the screen to next render'
+        self.movement_manager.command_ship1 = command_ship1
+        self.movement_manager.command_ship2 = command_ship2
+
         pygame.display.flip()
 
     def update_game(self):

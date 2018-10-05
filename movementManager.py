@@ -9,10 +9,17 @@ class MovementManager:
     def __init__(self, game_state, render_pace):
         self.gameState: GameState = game_state
         self.renderPace = render_pace
-        self.command: Command(False, False, False, False)
+        self.command_ship1: Command = None
+        self.command_ship2: Command = None
 
     def set_pace(self, render_pace):
         self.renderPace = render_pace
+
+    def set_ship1_command(self, command: Command):
+        self.command_ship1 = command
+
+    def set_ship2_command(self, command: Command):
+        self.command_ship2 = command
 
     def calculate_ship_movement(self, ship: Ship):
         ship.pos = ship.pos + ship.pos_delta * self.renderPace
