@@ -1,6 +1,5 @@
 """#Shows the Game state for each object"""
 from typing import List
-
 from ship import Ship
 from bullet import Bullet
 from asteroid import Asteroid
