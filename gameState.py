@@ -6,13 +6,11 @@ from asteroid import Asteroid
 
 
 class GameState:
-    def __init__(self, my_ship, enemy_ship, bullets, asteroid):
+    def __init__(self, my_ship, enemy_ship, bullets, asteroids):
         self.my_ship: Ship = my_ship
         self.enemy_ship: Ship = enemy_ship
-        bullets_array: List[Bullet] = [bullets for _ in range(100)]
-        self.bullets: List[Bullet] = bullets_array
-        asteroid_array: List[Asteroid] = [asteroid for _ in range(100)]
-        self.asteroid: List[Asteroid] = asteroid_array
+        self.bullets: List[Bullet] = bullets
+        self.asteroids: List[Asteroid] = asteroids
 
     def get_ship_state(self):
         return self.my_ship
@@ -24,7 +22,7 @@ class GameState:
         return self.bullets
 
     def get_asteroid_state(self):
-        return self.asteroid
+        return self.asteroids
 
     def set_ship_state(self, my_ship):
         self.my_ship = my_ship
@@ -36,4 +34,4 @@ class GameState:
         self.bullets = bullets
 
     def set_asteroid_state(self, asteroid):
-        self.asteroid = asteroid
+        self.asteroids = asteroid

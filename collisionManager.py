@@ -10,13 +10,13 @@ class CollisionManager:
 
     '#compare each intersection'
     def if_intersect(self):
-        for i in self.game_state.asteroid:
+        for i in self.game_state.asteroids:
             if pygame.sprite.collide_circle(self.game_state.my_ship, i):
                 '#i die'
                 pass
 
         for i in self.game_state.bullets:
-            if pygame.sprite.collide_circle(self.game_state.asteroid, i):
+            if pygame.sprite.collide_circle(self.game_state.asteroids, i):
                 '#add points? asteroid dies'
                 pass
 
