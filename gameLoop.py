@@ -6,6 +6,7 @@ from asteroid import Asteroid
 from bullet import Bullet
 from movementManager import MovementManager
 from command import Command
+from random import randint
 
 
 class GameLoop:
@@ -16,13 +17,22 @@ class GameLoop:
         pygame.display.set_caption("Asteroids")
         self.render_pace: float = 1/60
         self.game_active = True
+        self.asteroid_list = []
+        self.bullet_list = []
 
         self.ship = Ship(self.screen, Point(40, 60), Point(50, 100), 100, 5)
         self.enemy_ship = Ship(self.screen, Point(100, 60), Point(100, 100), 100, 5)
-        self.asteroids = Asteroid(self.screen, Point(100, 100), Point(100, 500), 50)
-        self.asteroids = Asteroid(self.screen, Point(100, 100), Point(100, 500), 50)
-        self.bullets = Bullet(self.screen, self.ship.pos, self.ship.pos_delta, 50)
-        self.game_state = GameState(self.ship, self.enemy_ship, 50, 50)
+        self.game_state = GameState(self.ship, self.enemy_ship, self.bullet_list, self.asteroid_list)
+
+        for count in range(0, 100):
+            self.asteroids = Asteroid(self.screen, Point(randint(0, 900), randint(0, 900)),
+                                      Point(randint(0, 900), randint(0, 900)), 50)
+            list.append(self.asteroid_list, self.asteroids)
+
+        for count in range(0, 100):
+            self.bullets = Bullet(self.screen, self.ship.pos, self.ship.pos_delta, 50)
+            list.append(self.bullet_list, self.bullets)
+
         self.movement_manager = MovementManager(self.render_pace)
 
     def handle_events(self):
@@ -94,7 +104,9 @@ class GameLoop:
 
         Ship.blitme(self.ship)
         Ship.blitme(self.enemy_ship)
-        Asteroid.blitme(self.asteroids, 100, 100)
+
+        for i in self.asteroid_list:
+            Asteroid.blitme(i, i.pos.x, i.pos.y)
 
         while self.game_active:
             self.handle_events()
