@@ -14,11 +14,12 @@ class GameLoop:
         pygame.display.set_caption("Asteroids")
         self.render_pace: float = 1/60
         self.game_active = True
-        self.movement_manager = MovementManager(self.game_state, self.render_pace)
+
         self.ship = Ship(self.screen, Point(40, 60), Point(50, 100), 100, 5)
         self.enemy_ship = Ship(self.screen, Point(100, 60), Point(100, 100), 100, 5)
         self.asteroids = Asteroid(self.screen, Point(100,100), Point(100,500), 50)
         self.game_state = GameState(self.ship, self.enemy_ship, 50, 50)
+        self.movement_manager = MovementManager(self.game_state, self.render_pace)
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -40,6 +41,10 @@ class GameLoop:
     """Main game loop"""
     def run_game(self):
         pygame.init()
+
+        Ship.blitme(self.ship)
+        Ship.blitme(self.enemy_ship)
+        Asteroid.blitme(self.asteroids, 100, 100)
 
         while self.game_active:
             self.handle_events()
