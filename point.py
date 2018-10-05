@@ -7,12 +7,14 @@ class Point:
         self.y = float(y)
 
     def __add__(self, other):
-        self.x = self.x + other.x
-        self.y = self.y + other.y
+        x = self.x + other.x
+        y = self.y + other.y
+        return Point(x, y)
 
     def __mul__(self, modifier: float):
-        self.x *= modifier
-        self.y *= modifier
+        x = self.x * modifier
+        y = self.y * modifier
+        return Point(x, y)
 
     '# X is a float between 0 and 1'
     def set_x(self, x):

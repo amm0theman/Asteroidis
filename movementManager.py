@@ -12,7 +12,7 @@ class MovementManager:
         self.command_ship2: Command = None
 
     def calculate_ship_movement(self, ship: Ship):
-        ship.pos = ship.pos + ship.pos_delta * self.renderPace
+        ship.pos += ship.pos_delta * self.renderPace
         return ship
 
     def calculate_rotation(self):
