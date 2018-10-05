@@ -20,7 +20,7 @@ class GameLoop:
         self.ship = Ship(self.screen, Point(40, 60), Point(50, 100), 100, 5)
         self.enemy_ship = Ship(self.screen, Point(100, 60), Point(100, 100), 100, 5)
         self.asteroids = Asteroid(self.screen, Point(100, 100), Point(100, 500), 50)
-        self.asteroids = Asteroid(self.screen, Point(100,100), Point(100,500), 50)
+        self.asteroids = Asteroid(self.screen, Point(100, 100), Point(100, 500), 50)
         self.bullets = Bullet(self.screen, self.ship.pos, self.ship.pos_delta, 50)
         self.game_state = GameState(self.ship, self.enemy_ship, 50, 50)
         self.movement_manager = MovementManager(self.render_pace)
@@ -76,6 +76,8 @@ class GameLoop:
                 pygame.quit()
 
     def update_game(self):
+        self.game_state = self.movement_manager.calculate_rotation(self.game_state)
+        self.game_state = self.movement_manager.calculate_pos_delta(self.game_state)
         self.game_state = self.movement_manager.calculate_movement(self.game_state)
 
     def render_game(self):

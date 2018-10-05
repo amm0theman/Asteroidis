@@ -2,6 +2,7 @@
 from gameState import GameState
 from ship import Ship
 from asteroid import Asteroid
+import math
 from command import Command
 
 
@@ -15,10 +16,25 @@ class MovementManager:
         ship.pos += ship.pos_delta * self.renderPace
         return ship
 
-    def calculate_rotation(self):
-        pass
+    def calculate_rotation(self, game_state: GameState):
+        if self.command_ship1.right:
+            game_state.my_ship.heading -= 1 * 3.14
+        elif self.command_ship2.left:
+            game_state.my_ship.heading += 1 * 3.14
 
-    def calculate_movement(self, game_state):
+    def calculate_heading_vector(self, ship: Ship):
+        theta = ship.heading
+        magnitude = ship.acceleration
+        heading_vector = (magnitude * math.cos(theta), magnitude * math.sin(theta))
+        return heading_vector
+
+    def calculate_pos_delta(self, game_state: GameState):
+        if self.command_ship1.accel:
+            game_state.my_ship.pos_delta += self.calculate_heading_vector(game_state.my_ship)
+        if self.command_ship2.accel:
+            game_state.enemy_ship.pos_delta += self.calculate_heading_vector(game_state.enemy_ship)
+
+    def calculate_movement(self, game_state: GameState):
         """Calculates movement for all game objects in the game state"""
         '# Calculate ships movements'
         game_state.my_ship = self.calculate_ship_movement(game_state.my_ship)
@@ -31,3 +47,4 @@ class MovementManager:
             i.pos = i.pos + i.pos_delta * self.renderPace
 
         return game_state
+
