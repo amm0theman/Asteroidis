@@ -3,9 +3,10 @@ from point import Point
 
 
 class Bullet:
-    def __init__(self, pos, pos_delta, ttl):
-        self.pos = Point(pos)
-        self.pos_delta = Point(pos_delta)
+    def __init__(self, screen, pos, pos_delta, ttl):
+        self.screen = screen
+        self.pos: Point = pos
+        self.pos_delta: Point = pos_delta
         self.ttl = float(ttl)
 
     def get_pos(self):

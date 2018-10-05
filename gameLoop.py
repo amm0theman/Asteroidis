@@ -3,6 +3,7 @@ from gameState import GameState
 from point import Point
 from ship import Ship
 from asteroid import Asteroid
+from bullet import Bullet
 from movementManager import MovementManager
 from command import Command
 
@@ -19,6 +20,8 @@ class GameLoop:
         self.ship = Ship(self.screen, Point(40, 60), Point(50, 100), 100, 5)
         self.enemy_ship = Ship(self.screen, Point(100, 60), Point(100, 100), 100, 5)
         self.asteroids = Asteroid(self.screen, Point(100, 100), Point(100, 500), 50)
+        self.asteroids = Asteroid(self.screen, Point(100,100), Point(100,500), 50)
+        self.bullets = Bullet(self.screen, self.ship.pos, self.ship.pos_delta, 50)
         self.game_state = GameState(self.ship, self.enemy_ship, 50, 50)
         self.movement_manager = MovementManager(self.game_state, self.render_pace)
 
