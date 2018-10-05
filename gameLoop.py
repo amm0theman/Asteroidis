@@ -22,7 +22,7 @@ class GameLoop:
         self.asteroids = Asteroid(self.screen, Point(100, 100), Point(100, 500), 50)
         self.bullets = Bullet(self.screen, self.ship.pos, self.ship.pos_delta, 50)
         self.game_state = GameState(self.ship, self.enemy_ship, 50, 50)
-        self.movement_manager = MovementManager(self.game_state, self.render_pace)
+        self.movement_manager = MovementManager(self.render_pace)
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -37,6 +37,7 @@ class GameLoop:
                 elif event == pygame.K_SPACE:
                     self.movement_manager.command_ship1.shoot = True
                 elif event == pygame.K_8:
+                    '#process ship two key down presses'
                     self.movement_manager.command_ship2.accel = True
                 elif event == pygame.K_4:
                     self.movement_manager.command_ship2.left = True
@@ -55,6 +56,7 @@ class GameLoop:
                 elif event == pygame.K_SPACE:
                     self.movement_manager.command_ship1.shoot = False
                 elif event == pygame.K_8:
+                    '#process ship two key up presses'
                     self.movement_manager.command_ship2.accel = False
                 elif event == pygame.K_4:
                     self.movement_manager.command_ship2.left = False
@@ -64,7 +66,7 @@ class GameLoop:
                     self.movement_manager.command_ship2.shoot = False
 
     def update_game(self):
-        self.game_state = self.movement_manager.calculate_movement()
+        self.game_state = self.movement_manager.calculate_movement(self.game_state)
 
     def render_game(self):
         pygame.display.flip()
