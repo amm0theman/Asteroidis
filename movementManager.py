@@ -41,7 +41,7 @@ class MovementManager:
         game_state.enemy_ship = self.calculate_ship_movement(game_state.enemy_ship)
 
         '# Calculate movement for asteroids and for bullets'
-        for i in game_state.asteroid:
+        for i in game_state.asteroids:
             i.pos = i.pos + i.pos_delta * self.renderPace
         for i in game_state.bullets:
             i.pos = i.pos + i.pos_delta * self.renderPace
