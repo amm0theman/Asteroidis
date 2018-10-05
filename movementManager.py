@@ -9,6 +9,7 @@ class MovementManager:
     def __init__(self, game_state, render_pace):
         self.gameState: GameState = game_state
         self.renderPace = render_pace
+        self.command: Command(False, False, False, False)
 
     def set_pace(self, render_pace):
         self.renderPace = render_pace
