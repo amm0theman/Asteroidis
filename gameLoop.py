@@ -5,7 +5,6 @@ from ship import Ship
 from asteroid import Asteroid
 from bullet import Bullet
 from movementManager import MovementManager
-from command import Command
 
 
 class GameLoop:
@@ -20,39 +19,31 @@ class GameLoop:
         self.ship = Ship(self.screen, Point(40, 60), Point(50, 100), 100, 5)
         self.enemy_ship = Ship(self.screen, Point(100, 60), Point(100, 100), 100, 5)
         self.asteroids = Asteroid(self.screen, Point(100, 100), Point(100, 500), 50)
-        self.asteroids = Asteroid(self.screen, Point(100,100), Point(100,500), 50)
+        self.asteroids = Asteroid(self.screen, Point(100, 100), Point(100, 500), 50)
         self.bullets = Bullet(self.screen, self.ship.pos, self.ship.pos_delta, 50)
         self.game_state = GameState(self.ship, self.enemy_ship, 50, 50)
         self.movement_manager = MovementManager(self.game_state, self.render_pace)
 
     def handle_events(self):
-
-        command_ship1 = Command()
-        command_ship2 = Command()
-
         for event in pygame.event.get():
-            '# When x button pushed quit game'
             if event.type == pygame.KEYDOWN:
                 if event == pygame.K_w:
-                    command_ship1.accel = True
+                    self.movement_manager.command_ship1.accel = True
                 elif event == pygame.K_a:
-                    command_ship1.right = True
+                    self.movement_manager.command_ship1.right = True
                 elif event == pygame.K_d:
-                    command_ship1.left = True
+                    self.movement_manager.command_ship1.left = True
                 elif event == pygame.K_SPACE:
-                    command_ship1.shoot = True
+                    self.movement_manager.command_ship1.shoot = True
             elif event.type == pygame.KEYUP:
                 if event == pygame.K_w:
-                    command_ship1.accel = False
+                    self.movement_manager.command_ship1.accel = False
                 elif event == pygame.K_a:
-                    command_ship1.right = False
+                    self.movement_manager.command_ship1.right = False
                 elif event == pygame.K_d:
-                    command_ship1.left = False
+                    self.movement_manager.command_ship1.left = False
                 elif event == pygame.K_SPACE:
-                    command_ship1.shoot = False
-
-        self.movement_manager.command_ship1 = command_ship1
-        self.movement_manager.command_ship2 = command_ship2
+                    self.movement_manager.command_ship1.shoot = False
 
         pygame.display.flip()
 
