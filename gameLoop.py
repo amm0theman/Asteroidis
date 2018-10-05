@@ -36,10 +36,6 @@ class GameLoop:
         self.movement_manager = MovementManager(self.render_pace)
 
     def handle_events(self):
-
-        command_ship1 = Command()
-        command_ship2 = Command()
-
         for event in pygame.event.get():
             '# When x button pushed quit game'
             if event.type == pygame.KEYDOWN:
@@ -80,7 +76,6 @@ class GameLoop:
                     self.movement_manager.command_ship2.right = False
                 elif event == pygame.K_0:
                     self.movement_manager.command_ship2.shoot = False
-                    command_ship1.shoot = False
             elif event.type == pygame.QUIT:
                 self.game_active = False
                 pygame.quit()

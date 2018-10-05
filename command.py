@@ -3,10 +3,10 @@
 
 class Command:
     def __init__(self):
-        self.shoot: bool = None
-        self.accel: bool = None
-        self.right: bool = None
-        self.left: bool = None
+        self.shoot: bool = False
+        self.accel: bool = False
+        self.right: bool = False
+        self.left: bool = False
 
     def get_shoot(self):
         return self.shoot

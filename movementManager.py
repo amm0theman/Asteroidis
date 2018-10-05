@@ -9,8 +9,8 @@ from command import Command
 class MovementManager:
     def __init__(self, render_pace):
         self.renderPace = render_pace
-        self.command_ship1: Command = None
-        self.command_ship2: Command = None
+        self.command_ship1: Command = Command()
+        self.command_ship2: Command = Command()
 
     def calculate_ship_movement(self, ship: Ship):
         ship.pos += ship.pos_delta * self.renderPace
@@ -21,6 +21,7 @@ class MovementManager:
             game_state.my_ship.heading -= 1 * 3.14
         elif self.command_ship2.left:
             game_state.my_ship.heading += 1 * 3.14
+        return game_state
 
     def calculate_heading_vector(self, ship: Ship):
         theta = ship.heading
@@ -33,6 +34,7 @@ class MovementManager:
             game_state.my_ship.pos_delta += self.calculate_heading_vector(game_state.my_ship)
         if self.command_ship2.accel:
             game_state.enemy_ship.pos_delta += self.calculate_heading_vector(game_state.enemy_ship)
+        return game_state
 
     def calculate_movement(self, game_state: GameState):
         """Calculates movement for all game objects in the game state"""
