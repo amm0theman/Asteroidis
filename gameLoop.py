@@ -27,6 +27,7 @@ class GameLoop:
     def handle_events(self):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
+                '#process ship one key down presses'
                 if event == pygame.K_w:
                     self.movement_manager.command_ship1.accel = True
                 elif event == pygame.K_a:
@@ -35,7 +36,16 @@ class GameLoop:
                     self.movement_manager.command_ship1.left = True
                 elif event == pygame.K_SPACE:
                     self.movement_manager.command_ship1.shoot = True
+                elif event == pygame.K_8:
+                    self.movement_manager.command_ship2.accel = True
+                elif event == pygame.K_4:
+                    self.movement_manager.command_ship2.left = True
+                elif event == pygame.K_6:
+                    self.movement_manager.command_ship2.right = True
+                elif event == pygame.K_0:
+                    self.movement_manager.command_ship2.shoot = True
             elif event.type == pygame.KEYUP:
+                '#process ship one key up presses'
                 if event == pygame.K_w:
                     self.movement_manager.command_ship1.accel = False
                 elif event == pygame.K_a:
@@ -44,14 +54,20 @@ class GameLoop:
                     self.movement_manager.command_ship1.left = False
                 elif event == pygame.K_SPACE:
                     self.movement_manager.command_ship1.shoot = False
-
-        pygame.display.flip()
+                elif event == pygame.K_8:
+                    self.movement_manager.command_ship2.accel = False
+                elif event == pygame.K_4:
+                    self.movement_manager.command_ship2.left = False
+                elif event == pygame.K_6:
+                    self.movement_manager.command_ship2.right = False
+                elif event == pygame.K_0:
+                    self.movement_manager.command_ship2.shoot = False
 
     def update_game(self):
         self.game_state = self.movement_manager.calculate_movement()
 
     def render_game(self):
-        pass
+        pygame.display.flip()
 
     """Main game loop"""
     def run_game(self):
