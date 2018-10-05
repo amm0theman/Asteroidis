@@ -72,6 +72,7 @@ class GameLoop:
                     self.movement_manager.command_ship2.shoot = False
                     command_ship1.shoot = False
             elif event.type == pygame.QUIT:
+                self.game_active = False
                 pygame.quit()
 
     def update_game(self):

@@ -20,7 +20,6 @@ class MovementManager:
 
     def calculate_movement(self, game_state):
         """Calculates movement for all game objects in the game state"""
-
         '# Calculate ships movements'
         game_state.my_ship = self.calculate_ship_movement(game_state.my_ship)
         game_state.enemy_ship = self.calculate_ship_movement(game_state.enemy_ship)
