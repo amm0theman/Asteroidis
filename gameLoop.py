@@ -26,7 +26,7 @@ class GameLoop:
 
         for count in range(0, 100):
             self.asteroids = Asteroid(self.screen, Point(randint(0, 900), randint(0, 900)),
-                                      Point(randint(0, 900), randint(0, 900)), 50)
+                                      Point(randint(-10, 10), randint(-10, 10)), 50)
             list.append(self.asteroid_list, self.asteroids)
 
         for count in range(0, 100):
@@ -89,19 +89,18 @@ class GameLoop:
         '#render new asteroids at new locations ever call'
         "#render new ship locations and heading directions"
         '#render bullets as they are created and travel until they die'
-        pygame.display.flip()
-        pass
-
-
-    """Main game loop"""
-    def run_game(self):
-        pygame.init()
-
         Ship.blitme(self.ship)
         Ship.blitme(self.enemy_ship)
 
         for i in self.asteroid_list:
             Asteroid.blitme(i, i.pos.x, i.pos.y)
+        pygame.display.flip()
+        self.screen.fill(000000)
+
+
+    """Main game loop"""
+    def run_game(self):
+        pygame.init()
 
         while self.game_active:
             self.handle_events()

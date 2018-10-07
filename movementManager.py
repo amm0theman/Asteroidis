@@ -1,7 +1,6 @@
 """takes care of movement for next frame of game play"""
 from gameState import GameState
 from ship import Ship
-from asteroid import Asteroid
 import math
 from command import Command
 
