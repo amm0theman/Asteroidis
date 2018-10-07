@@ -21,13 +21,13 @@ class MovementManager:
 
     def calculate_rotation(self, game_state: GameState) -> GameState:
         if self.command_ship1.right:
-            game_state.my_ship.heading -= 1
+            game_state.my_ship.heading -= .01
         elif self.command_ship1.left:
-            game_state.my_ship.heading += 1
+            game_state.my_ship.heading += .01
         if self.command_ship2.right:
-            game_state.enemy_ship.heading -= 1
+            game_state.enemy_ship.heading -= .01
         elif self.command_ship2.left:
-            game_state.enemy_ship.heading += 1
+            game_state.enemy_ship.heading += .011
         return game_state
 
     @staticmethod
