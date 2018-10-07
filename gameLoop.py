@@ -22,21 +22,21 @@ class GameLoop:
 
         self.render_pace: float = 1/60
         self.game_active = True
-        self.asteroid_list = []
-        self.bullet_list = []
+        asteroid_list = []
+        bullet_list = []
 
-        self.ship = Ship(self.screen, Point(400, 500), Point(0, 0), 10, 5)
-        self.enemy_ship = Ship(self.screen, Point(600, 500), Point(0, 0), 10, 1)
-        self.game_state = GameState(self.ship, self.enemy_ship, self.bullet_list, self.asteroid_list)
+        ship = Ship(self.screen, Point(400, 500), Point(0, 0), 10, 5)
+        enemy_ship = Ship(self.screen, Point(600, 500), Point(0, 0), 10, 1)
+        self.game_state = GameState(ship, enemy_ship, bullet_list, asteroid_list)
 
         for count in range(0, 8):
-            self.asteroids = Asteroid(self.screen, Point(randint(0, 900), randint(0, 900)),
+            asteroids = Asteroid(self.screen, Point(randint(0, 900), randint(0, 900)),
                                       Point(randint(-20, 20), randint(-20, 20)), randint(120, 170))
-            list.append(self.asteroid_list, self.asteroids)
+            list.append(asteroid_list, asteroids)
 
         for count in range(0, 100):
-            self.bullets = Bullet(self.screen, self.ship.pos, self.ship.pos_delta, 50)
-            list.append(self.bullet_list, self.bullets)
+            bullets = Bullet(self.screen, ship.pos, ship.pos_delta, 50)
+            list.append(bullet_list, bullets)
 
         self.movement_manager = MovementManager(self.render_pace)
 
@@ -94,14 +94,14 @@ class GameLoop:
         '#render new asteroids at new locations ever call'
         "#render new ship locations and heading directions"
         '#render bullets as they are created and travel until they die'
-        self.ship.blitme()
-        self.enemy_ship.blitme()
+        self.game_state.my_ship.blitme()
+        self.game_state.enemy_ship.blitme()
 
-        for i in self.asteroid_list:
-            Asteroid.blitme(i)
-        text = str(self.ship.pos.x)
-        self.debug_text_surface = self.myfont.render(str(self.ship.pos.x), False, (255, 255, 255))
+        for i in self.game_state.asteroids:
+            i.blitme()
+        self.debug_text_surface = self.myfont.render(str(self.game_state.my_ship.heading), False, (255, 255, 255))
         self.screen.blit(self.debug_text_surface, (0, 0))
+
 
         pygame.display.flip()
         self.screen.fill(000000)
