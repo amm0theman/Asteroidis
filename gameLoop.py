@@ -26,7 +26,7 @@ class GameLoop:
 
         for count in range(0, 8):
             self.asteroids = Asteroid(self.screen, Point(randint(0, 900), randint(0, 900)),
-                                      Point(randint(-15, 15), randint(-15, 15)), randint(50, 100))
+                                      Point(randint(-20, 20), randint(-20, 20)), randint(120, 170))
             list.append(self.asteroid_list, self.asteroids)
 
         for count in range(0, 100):
