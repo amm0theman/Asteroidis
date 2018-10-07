@@ -14,4 +14,6 @@ class Asteroid:
         self.image = pygame.transform.scale(self.image, (self.size, self.size - 25))
 
     def blitme(self):
-        self.screen.blit(self.image, (self.pos.x, self.pos.y))
+        rotated_image_rect = self.image.get_rect()
+        rotated_image_rect.center = (self.pos.x, self.pos.y)
+        self.screen.blit(self.image, rotated_image_rect)

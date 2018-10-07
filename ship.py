@@ -20,7 +20,6 @@ class Ship(IShipState):
         self.image = pygame.transform.rotate(self.image, -90)
         self.image = pygame.transform.scale(self.image, (20, 20))
         self.rect = self.image.get_rect()
-        center = self.rect.center
         self.mask = pygame.mask.from_surface(self.image)
 
     def blitme(self):

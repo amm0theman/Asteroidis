@@ -21,13 +21,13 @@ class MovementManager:
 
     def calculate_rotation(self, game_state: GameState) -> GameState:
         if self.command_ship1.right:
-            game_state.my_ship.heading -= .01
+            game_state.my_ship.heading -= .02
         elif self.command_ship1.left:
-            game_state.my_ship.heading += .01
+            game_state.my_ship.heading += .02
         if self.command_ship2.right:
-            game_state.enemy_ship.heading -= .01
+            game_state.enemy_ship.heading -= .02
         elif self.command_ship2.left:
-            game_state.enemy_ship.heading += .01
+            game_state.enemy_ship.heading += .02
         return game_state
 
     @staticmethod
@@ -44,7 +44,9 @@ class MovementManager:
             game_state.enemy_ship.pos_delta += self.calculate_heading_vector(game_state.enemy_ship)
 
         '# Calculate max speeds and friction'
-
+        game_state.my_ship.pos_delta = self.calculate_friction(game_state.my_ship.pos_delta, self.command_ship1.accel)
+        game_state.enemy_ship.pos_delta = self.calculate_friction(game_state.enemy_ship.pos_delta,
+                                                                  self.command_ship2.accel)
         return game_state
 
     def calculate_movement(self, game_state: GameState) -> GameState:
@@ -76,26 +78,6 @@ class MovementManager:
         return position
 
     def calculate_friction(self, delta: Point, accel: bool) -> Point:
-        max_speed = 50
-        friction = .3
-        if math.fabs(delta.x) > max_speed:
-            if delta.x < 0:
-                delta.x = -1 * max_speed
-            else:
-                delta.x = max_speed
-        if math.fabs(delta.y) > max_speed:
-            if delta.y < 0:
-                delta.y = -1 * max_speed
-            else:
-                delta.y = max_speed
-        if (accel is not True) & (math.fabs(delta.x) > 0):
-            if delta.x > 0:
-                delta.x -= friction
-            else:
-                delta.x += friction
-        if (accel is not True) & (math.fabs(delta.y) > 0):
-            if delta.y > 0:
-                delta.y -= friction
-            else:
-                delta.y += friction
+        if self.command_ship1.accel is False:
+            delta *= .993
         return delta
