@@ -14,7 +14,12 @@ class GameLoop:
         '# Initialize game window and settings etc.'
         self.screen = pygame.display.set_mode(
             (1000, 1000))
+
         pygame.display.set_caption("Asteroids")
+        pygame.font.init()
+        self.myfont = pygame.font.SysFont('Comic Sans MS', 30)
+        self.debug_text_surface = self.myfont.render('Hello', False, (255, 255, 255))
+
         self.render_pace: float = 1/60
         self.game_active = True
         self.asteroid_list = []
@@ -26,7 +31,7 @@ class GameLoop:
 
         for count in range(0, 100):
             self.asteroids = Asteroid(self.screen, Point(randint(0, 900), randint(0, 900)),
-                                      Point(randint(-10, 10), randint(-10, 10)), 50)
+                                      Point(randint(-1000000, 1000000), randint(-10, 10)), 50)
             list.append(self.asteroid_list, self.asteroids)
 
         for count in range(0, 100):
@@ -94,6 +99,11 @@ class GameLoop:
 
         for i in self.asteroid_list:
             Asteroid.blitme(i, i.pos.x, i.pos.y)
+        text = str(self.ship.pos.x)
+        self.debug_text_surface = self.myfont.render(str(self.ship.pos.x), False, (255, 255, 255))
+        self.screen.blit(self.debug_text_surface, (0, 0))
+
+
         pygame.display.flip()
         self.screen.fill(000000)
 
