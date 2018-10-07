@@ -78,7 +78,7 @@ class GameLoop:
                 elif event.key == pygame.K_4:
                     self.movement_manager.command_ship2.left = False
                 elif event.key == pygame.K_6:
-                    self.movement_manageaaaar.command_ship2.right = False
+                    self.movement_manager.command_ship2.right = False
                 elif event.key == pygame.K_0:
                     self.movement_manager.command_ship2.shoot = False
             elif event.type == pygame.QUIT:
@@ -102,7 +102,6 @@ class GameLoop:
 
         self.debug_text_surface = self.myfont.render(str(self.game_state.my_ship.heading), False, (255, 255, 255))
         self.screen.blit(self.debug_text_surface, (0, 0))
-
 
         pygame.display.flip()
         self.screen.fill(000000)

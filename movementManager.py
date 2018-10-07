@@ -3,7 +3,7 @@ from gameState import GameState
 from ship import Ship
 import math
 from command import Command
-
+from point import Point
 
 class MovementManager:
     def __init__(self, render_pace):
@@ -17,15 +17,15 @@ class MovementManager:
 
     def calculate_rotation(self, game_state: GameState) -> GameState:
         if self.command_ship1.right:
-            game_state.my_ship.heading -= 1 * 3.14
-        elif self.command_ship2.left:
-            game_state.my_ship.heading += 1 * 3.14
+            game_state.my_ship.heading -= 1
+        elif self.command_ship1.left:
+            game_state.my_ship.heading += 1
         return game_state
 
     def calculate_heading_vector(self, ship: Ship):
         theta = ship.heading
         magnitude = ship.acceleration
-        heading_vector = (magnitude * math.cos(theta), magnitude * math.sin(theta))
+        heading_vector = Point(magnitude * math.cos(theta), magnitude * math.sin(theta))
         return heading_vector
 
     def calculate_pos_delta(self, game_state: GameState):
