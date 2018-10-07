@@ -7,6 +7,7 @@ from bullet import Bullet
 from movementManager import MovementManager
 from command import Command
 from random import randint
+import math
 
 
 class GameLoop:
@@ -94,6 +95,7 @@ class GameLoop:
         '#render new asteroids at new locations ever call'
         "#render new ship locations and heading directions"
         '#render bullets as they are created and travel until they die'
+
         self.game_state.my_ship.blitme()
         self.game_state.enemy_ship.blitme()
 

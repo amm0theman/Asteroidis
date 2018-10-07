@@ -5,6 +5,7 @@ from bullet import Bullet
 from gameStateInterfaces import IShipState
 from asteroid import Asteroid
 import pygame
+import math
 
 
 class Ship(IShipState):
@@ -21,7 +22,9 @@ class Ship(IShipState):
         pygame.mask.from_surface(self.image, 127)
 
     def blitme(self):
-        self.screen.blit(self.image, (self.pos.x, self.pos.y))
+        heading_in_degrees = (180 * self.heading) / math.pi
+        rotated_image = pygame.transform.rotate(self.image, heading_in_degrees)
+        self.screen.blit(rotated_image, (self.pos.x, self.pos.y))
 
     @singledispatch
     def intersect_event(self, arg):
