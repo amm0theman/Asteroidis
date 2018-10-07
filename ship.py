@@ -20,12 +20,15 @@ class Ship(IShipState):
         self.image = pygame.transform.rotate(self.image, -90)
         self.image = pygame.transform.scale(self.image, (20, 20))
         self.rect = self.image.get_rect()
+        center = self.rect.center
         self.mask = pygame.mask.from_surface(self.image)
 
     def blitme(self):
         heading_in_degrees = (180 * self.heading) / math.pi
         rotated_image = pygame.transform.rotate(self.image, -heading_in_degrees)
-        self.screen.blit(rotated_image, (self.pos.x, self.pos.y))
+        rotated_image_rect = rotated_image.get_rect()
+        rotated_image_rect.center = (self.pos.x, self.pos.y)
+        self.screen.blit(rotated_image, rotated_image_rect)
 
     @singledispatch
     def intersect_event(self, arg):
