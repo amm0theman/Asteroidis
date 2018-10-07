@@ -45,41 +45,41 @@ class GameLoop:
             '# When x button pushed quit game'
             if event.type == pygame.KEYDOWN:
                 '#process ship one key down presses'
-                if event == pygame.K_w:
+                if event.key == pygame.K_w:
                     self.movement_manager.command_ship1.accel = True
-                elif event == pygame.K_a:
+                elif event.key == pygame.K_a:
                     self.movement_manager.command_ship1.right = True
-                elif event == pygame.K_d:
+                elif event.key == pygame.K_d:
                     self.movement_manager.command_ship1.left = True
-                elif event == pygame.K_SPACE:
+                elif event.key == pygame.K_SPACE:
                     self.movement_manager.command_ship1.shoot = True
-                elif event == pygame.K_8:
+                elif event.key == pygame.K_8:
                     '#process ship two key down presses'
                     self.movement_manager.command_ship2.accel = True
-                elif event == pygame.K_4:
+                elif event.key == pygame.K_4:
                     self.movement_manager.command_ship2.left = True
-                elif event == pygame.K_6:
+                elif event.key == pygame.K_6:
                     self.movement_manager.command_ship2.right = True
-                elif event == pygame.K_0:
+                elif event.key == pygame.K_0:
                     self.movement_manager.command_ship2.shoot = True
             elif event.type == pygame.KEYUP:
                 '#process ship one key up presses'
-                if event == pygame.K_w:
+                if event.key == pygame.K_w:
                     self.movement_manager.command_ship1.accel = False
-                elif event == pygame.K_a:
+                elif event.key == pygame.K_a:
                     self.movement_manager.command_ship1.right = False
-                elif event == pygame.K_d:
+                elif event.key == pygame.K_d:
                     self.movement_manager.command_ship1.left = False
-                elif event == pygame.K_SPACE:
+                elif event.key == pygame.K_SPACE:
                     self.movement_manager.command_ship1.shoot = False
-                elif event == pygame.K_8:
+                elif event.key == pygame.K_8:
                     '#process ship two key up presses'
                     self.movement_manager.command_ship2.accel = False
-                elif event == pygame.K_4:
+                elif event.key == pygame.K_4:
                     self.movement_manager.command_ship2.left = False
-                elif event == pygame.K_6:
-                    self.movement_manager.command_ship2.right = False
-                elif event == pygame.K_0:
+                elif event.key == pygame.K_6:
+                    self.movement_manageaaaar.command_ship2.right = False
+                elif event.key == pygame.K_0:
                     self.movement_manager.command_ship2.shoot = False
             elif event.type == pygame.QUIT:
                 self.game_active = False
@@ -99,6 +99,7 @@ class GameLoop:
 
         for i in self.game_state.asteroids:
             i.blitme()
+
         self.debug_text_surface = self.myfont.render(str(self.game_state.my_ship.heading), False, (255, 255, 255))
         self.screen.blit(self.debug_text_surface, (0, 0))
 
