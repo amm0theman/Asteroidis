@@ -16,7 +16,7 @@ class MovementManager:
         ship.pos += ship.pos_delta * self.renderPace
         return ship
 
-    def calculate_rotation(self, game_state: GameState):
+    def calculate_rotation(self, game_state: GameState) -> GameState:
         if self.command_ship1.right:
             game_state.my_ship.heading -= 1 * 3.14
         elif self.command_ship2.left:
