@@ -15,8 +15,8 @@ class Ship(IShipState):
         self.heading: float = heading
         self.acceleration: float = acceleration
 
-        self.image = pygame.image.load('venv/images/ship.bmp')
-        self.image = pygame.transform.scale(self.image, (80, 60))
+        self.image = pygame.image.load('venv/images/ship.png')
+        self.image = pygame.transform.scale(self.image, (20, 20))
         self.rect = self.image.get_rect()
         pygame.mask.from_surface(self.image, 127)
 

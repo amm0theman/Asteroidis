@@ -1,5 +1,6 @@
 """Bullet object in the game"""
 from point import Point
+import pygame
 
 
 class Bullet:
@@ -8,6 +9,9 @@ class Bullet:
         self.pos: Point = pos
         self.pos_delta: Point = pos_delta
         self.ttl = float(ttl)
+
+        self.image = pygame.image.load('venv/images/bullet.png')
+        self.image = pygame.transform.scale(self.image, (80, 60))
 
     def get_pos(self):
         return self.pos
@@ -26,3 +30,6 @@ class Bullet:
 
     def set_ttl(self, ttl):
         self.ttl = ttl
+
+    def blitme(self, posx, posy):
+        self.screen.blit(self.image, (posx, posy))
