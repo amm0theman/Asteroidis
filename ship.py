@@ -19,11 +19,11 @@ class Ship(IShipState):
         self.image = pygame.image.load('venv/images/ship.png')
         self.image = pygame.transform.scale(self.image, (20, 20))
         self.rect = self.image.get_rect()
-        pygame.mask.from_surface(self.image, 127)
+        self.mask = pygame.mask.from_surface(self.image, self.rect)
 
     def blitme(self):
         heading_in_degrees = (180 * self.heading) / math.pi
-        rotated_image = pygame.transform.rotate(self.image, heading_in_degrees)
+        rotated_image = pygame.transform.rotate(self.image, -heading_in_degrees)
         self.screen.blit(rotated_image, (self.pos.x, self.pos.y))
 
     @singledispatch
