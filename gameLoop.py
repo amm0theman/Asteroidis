@@ -102,6 +102,9 @@ class GameLoop:
         for i in self.game_state.asteroids:
             i.blitme()
 
+        for i in self.game_state.bullets:
+            i.blitme()
+
         self.debug_text_surface = self.myfont.render(str(self.game_state.my_ship.pos_delta.x), False, (255, 255, 255))
         self.screen.blit(self.debug_text_surface, (0, 0))
 

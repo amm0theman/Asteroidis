@@ -11,7 +11,7 @@ class Bullet:
         self.ttl = float(ttl)
 
         self.image = pygame.image.load('venv/images/bullet.png')
-        self.image = pygame.transform.scale(self.image, (80, 60))
+        self.image = pygame.transform.scale(self.image, (25, 25))
 
     def get_pos(self):
         return self.pos
@@ -31,5 +31,5 @@ class Bullet:
     def set_ttl(self, ttl):
         self.ttl = ttl
 
-    def blitme(self, posx, posy):
-        self.screen.blit(self.image, (posx, posy))
+    def blitme(self):
+        self.screen.blit(self.image, (self.pos.x, self.pos.y))
