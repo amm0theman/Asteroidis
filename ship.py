@@ -21,7 +21,7 @@ class Ship(IShipState):
         pygame.mask.from_surface(self.image, 127)
 
     def blitme(self):
-        self.screen.blit(self.image, self.rect)
+        self.screen.blit(self.image, (self.pos.x, self.pos.y))
 
     @singledispatch
     def intersect_event(self, arg):

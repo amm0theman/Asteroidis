@@ -31,5 +31,5 @@ class Asteroid:
     def set_size(self, size):
         self.size = size
 
-    def blitme(self, posx, posy):
-        self.screen.blit(self.image, (posx, posy))
+    def blitme(self):
+        self.screen.blit(self.image, (self.pos.x, self.pos.y))
