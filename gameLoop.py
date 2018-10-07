@@ -38,7 +38,7 @@ class GameLoop:
             bullets = Bullet(self.screen, ship.pos, ship.pos_delta, 50)
             list.append(bullet_list, bullets)
 
-        self.movement_manager = MovementManager(self.render_pace)
+        self.movement_manager = MovementManager(self.render_pace, 1000, 1000)
 
     def handle_events(self):
         for event in pygame.event.get():
