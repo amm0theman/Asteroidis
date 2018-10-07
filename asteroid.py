@@ -8,10 +8,10 @@ class Asteroid:
         self.screen = screen
         self.pos: Point = pos
         self.pos_delta: Point = pos_delta
-        self.size = float(size)
+        self.size = size
 
         self.image = pygame.image.load('venv/images/asteroid.png')
-        self.image = pygame.transform.scale(self.image, (80, 60))
+        self.image = pygame.transform.scale(self.image, (self.size, self.size - 25))
 
     def get_pos(self):
         return self.pos
