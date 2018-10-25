@@ -25,7 +25,7 @@ class Ship(pygame.sprite.Sprite):
     def blitme(self):
         heading_in_degrees = (180 * self.heading) / math.pi
         rotated_image = pygame.transform.rotate(self.image, -heading_in_degrees)
-        rotated_image_rect = rotated_image.get_rect()
+        rotated_image_rect = self.rect
         rotated_image_rect.center = (self.pos.x, self.pos.y)
         self.screen.blit(rotated_image, rotated_image_rect)
 

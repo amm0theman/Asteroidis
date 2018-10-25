@@ -17,6 +17,6 @@ class Asteroid(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
     def blitme(self):
-        rotated_image_rect = self.image.get_rect()
+        rotated_image_rect = self.rect
         rotated_image_rect.center = (self.pos.x, self.pos.y)
         self.screen.blit(self.image, rotated_image_rect)
