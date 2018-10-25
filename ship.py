@@ -8,19 +8,19 @@ import pygame
 import math
 
 
-class Ship(IShipState):
+class Ship(pygame.sprite.Sprite):
     def __init__(self, screen, pos: Point, pos_delta: Point, heading: float, acceleration: float):
+        pygame.sprite.Sprite.__init__(self)
+        self.image: pygame.Surface = pygame.image.load('venv/images/ship.png')
+        self.image = pygame.transform.rotate(self.image, -90)
+        self.image = pygame.transform.scale(self.image, (20, 20))
+        self.rect = self.image.get_rect()
+
         self.screen = screen
         self.pos: Point = pos
         self.pos_delta: Point = pos_delta
         self.heading: float = heading
         self.acceleration: float = acceleration
-
-        self.image = pygame.image.load('venv/images/ship.png')
-        self.image = pygame.transform.rotate(self.image, -90)
-        self.image = pygame.transform.scale(self.image, (20, 20))
-        self.rect = self.image.get_rect()
-        self.mask = pygame.mask.from_surface(self.image)
 
     def blitme(self):
         heading_in_degrees = (180 * self.heading) / math.pi

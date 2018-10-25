@@ -5,6 +5,7 @@ from ship import Ship
 from asteroid import Asteroid
 from bullet import Bullet
 from movementManager import MovementManager
+from collisionManager import CollisionManager
 from command import Command
 from random import randint
 import math
@@ -40,6 +41,7 @@ class GameLoop:
             list.append(bullet_list, bullets)
 
         self.movement_manager = MovementManager(self.render_pace, 1000, 1000)
+        self.collision_manager = CollisionManager()
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -90,9 +92,10 @@ class GameLoop:
         self.game_state = self.movement_manager.calculate_rotation(self.game_state)
         self.game_state = self.movement_manager.calculate_pos_delta(self.game_state)
         self.game_state = self.movement_manager.calculate_movement(self.game_state)
+        self.game_state = self.collision_manager.if_intersect(self.game_state)
 
     def render_game(self):
-        '#render new asteroids at new locations ever call'
+        '#render new asteroids at new locations every call'
         "#render new ship locations and heading directions"
         '#render bullets as they are created and travel until they die'
 

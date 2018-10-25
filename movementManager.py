@@ -78,17 +78,17 @@ class MovementManager:
         return position
 
     def calculate_friction(self, delta: Point, accel: bool) -> Point:
-        topspeed = 200
+        top_speed = 200
         if self.command_ship1.accel is False:
             delta *= .993
-        if math.fabs(delta.x) > topspeed:
+        if math.fabs(delta.x) > top_speed:
             if delta.x > 0:
-                delta.x = topspeed
+                delta.x = top_speed
             if delta.x < 0:
-                delta.x = -1 * topspeed
-        if math.fabs(delta.y) > topspeed:
+                delta.x = -1 * top_speed
+        if math.fabs(delta.y) > top_speed:
             if delta.y > 0:
-                delta.y = topspeed
+                delta.y = top_speed
             if delta.y < 0:
-                delta.y = -1 * topspeed
+                delta.y = -1 * top_speed
         return delta
