@@ -13,6 +13,6 @@ class CollisionManager:
     def if_intersect(self, game_state: GameState) -> GameState:
         for i in game_state.asteroids:
             if pygame.sprite.collide_mask(game_state.my_ship, i):
-                game_state.my_ship.pos = Point(0, 0)
+                game_state.my_ship.pos = Point(400, 500)
         return game_state
 
