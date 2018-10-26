@@ -24,6 +24,11 @@ class CollisionManager:
                 game_state.enemy_ship.pos_delta = Point(0, 0)
                 game_state.enemy_ship.heading = -math.pi/2
 
+        for i in game_state.asteroids:
+            for j in game_state.bullets:
+                if pygame.sprite.collide_mask(i, j):
+                    game_state.asteroids.remove(i)
+                    game_state.bullets.remove(j)
         return game_state
 
 

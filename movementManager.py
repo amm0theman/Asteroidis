@@ -91,3 +91,12 @@ class MovementManager:
             if delta.y < 0:
                 delta.y = -1 * top_speed
         return delta
+
+    def calculate_shoot(self, game_state: GameState) -> GameState:
+        if self.command_ship1.shoot:
+            '# shoot a bullet with x time to live that gets updated every cycle'
+
+
+
+        return game_state
+
