@@ -2,7 +2,6 @@
 from functools import singledispatch
 from point import Point
 from bullet import Bullet
-from gameStateInterfaces import IShipState
 from asteroid import Asteroid
 import pygame
 import math

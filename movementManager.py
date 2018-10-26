@@ -44,9 +44,8 @@ class MovementManager:
             game_state.enemy_ship.pos_delta += self.calculate_heading_vector(game_state.enemy_ship)
 
         '# Calculate max speeds and friction'
-        game_state.my_ship.pos_delta = self.calculate_friction(game_state.my_ship.pos_delta, self.command_ship1.accel)
-        game_state.enemy_ship.pos_delta = self.calculate_friction(game_state.enemy_ship.pos_delta,
-                                                                  self.command_ship2.accel)
+        game_state.my_ship.pos_delta = self.calculate_friction(game_state.my_ship.pos_delta)
+        game_state.enemy_ship.pos_delta = self.calculate_friction(game_state.enemy_ship.pos_delta)
         return game_state
 
     def calculate_movement(self, game_state: GameState) -> GameState:
@@ -77,7 +76,7 @@ class MovementManager:
             position.y = window_min
         return position
 
-    def calculate_friction(self, delta: Point, accel: bool) -> Point:
+    def calculate_friction(self, delta: Point) -> Point:
         top_speed = 200
         if self.command_ship1.accel is False:
             delta *= .993
