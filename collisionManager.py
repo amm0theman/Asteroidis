@@ -24,7 +24,6 @@ class CollisionManager:
                 game_state.enemy_ship.pos_delta = Point(0, 0)
                 game_state.enemy_ship.heading = -math.pi/2
 
-
         return game_state
 
 

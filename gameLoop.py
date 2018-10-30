@@ -6,7 +6,6 @@ from asteroid import Asteroid
 from bullet import Bullet
 from movementManager import MovementManager
 from collisionManager import CollisionManager
-from command import Command
 from random import randint
 import math
 
@@ -22,22 +21,18 @@ class GameLoop:
         self.myfont = pygame.font.SysFont('Comic Sans MS', 30)
         self.debug_text_surface = self.myfont.render('Hello', False, (255, 255, 255))
 
-        self.render_pace: float = 1/60
+        self.render_pace: float = 1 / 60
         self.game_active = True
         asteroid_list = []
         bullet_list = []
 
-        ship = Ship(self.screen, Point(400, 500), Point(0, 0), -math.pi/2, 1)
-        enemy_ship = Ship(self.screen, Point(600, 500), Point(0, 0), -math.pi/2, 1)
+        ship = Ship(self.screen, Point(400, 500), Point(0, 0), -math.pi / 2, 1)
+        enemy_ship = Ship(self.screen, Point(600, 500), Point(0, 0), -math.pi / 2, 1)
         self.game_state = GameState(ship, enemy_ship, bullet_list, asteroid_list)
 
-        for count in range(0, 8):
-            asteroids = Asteroid(self.screen, Point(randint(0, 900), randint(0, 900)),
-                                      Point(randint(-20, 20), randint(-20, 20)), randint(120, 170))
-            list.append(asteroid_list, asteroids)
 
         for count in range(0, 10):
-            bullets = Bullet(self.screen, Point(randint(200, 300), randint(400,500)), ship.pos_delta, 50)
+            bullets = Bullet(self.screen, Point(randint(200, 300), randint(400, 500)), Point(5,5), 50)
             list.append(bullet_list, bullets)
 
         self.movement_manager = MovementManager(self.render_pace, 1000, 1000)
@@ -92,7 +87,9 @@ class GameLoop:
         self.game_state = self.movement_manager.calculate_rotation(self.game_state)
         self.game_state = self.movement_manager.calculate_pos_delta(self.game_state)
         self.game_state = self.movement_manager.calculate_movement(self.game_state)
+        self.game_state = self.movement_manager.calculate_shoot(self.game_state, self.screen)
         self.game_state = self.collision_manager.if_intersect(self.game_state)
+
 
     def render_game(self):
         '#render new asteroids at new locations every call'
@@ -113,8 +110,8 @@ class GameLoop:
         pygame.display.flip()
         self.screen.fill(000000)
 
-
     """Main game loop"""
+
     def run_game(self):
         pygame.init()
 

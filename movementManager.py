@@ -4,6 +4,8 @@ from ship import Ship
 import math
 from command import Command
 from point import Point
+from bullet import Bullet
+import pygame
 
 
 class MovementManager:
@@ -92,11 +94,17 @@ class MovementManager:
                 delta.y = -1 * top_speed
         return delta
 
-    def calculate_shoot(self, game_state: GameState) -> GameState:
+    def calculate_shoot(self, game_state: GameState, screen) -> GameState:
         if self.command_ship1.shoot:
+            theta = game_state.my_ship.heading
+            magnitude = game_state.my_ship.acceleration
+            heading_vector = Point(magnitude * math.cos(theta), magnitude * math.sin(theta))
             '# shoot a bullet with x time to live that gets updated every cycle'
-
-
+            '# def __init__(self, screen, pos, pos_delta, ttl):'
+            game_state.bullets.append(
+                Bullet(screen,
+                       Point(game_state.my_ship.pos.x + -12.5, game_state.my_ship.pos.y + -12.5) + (
+                                   heading_vector * 15),
+                       heading_vector * 200, 10))
 
         return game_state
-
