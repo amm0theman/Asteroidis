@@ -94,6 +94,12 @@ class GameLoop:
         self.game_state = self.movement_manager.calculate_shoot(self.game_state, self.screen)
         self.game_state = self.collision_manager.if_intersect(self.game_state)
 
+        for i in self.game_state.bullets:
+            i.ttl -= 1
+
+        for i in self.game_state.bullets:
+            if i.ttl <= 0:
+                self.game_state.bullets.remove(i)
 
     def render_game(self):
         '#render new asteroids at new locations every call'

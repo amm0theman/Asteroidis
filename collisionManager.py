@@ -13,7 +13,7 @@ class CollisionManager:
     '#compare each intersection'
     def if_intersect(self, game_state: GameState) -> GameState:
         for i in game_state.asteroids:
-            if pygame.sprite.collide_circle(game_state.my_ship, i):
+            if pygame.sprite.collide_mask(game_state.my_ship, i):
                 game_state.my_ship.pos = Point(400, 500)
                 game_state.my_ship.pos_delta = Point(0, 0)
                 game_state.my_ship.heading = -math.pi/2
