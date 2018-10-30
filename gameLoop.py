@@ -35,10 +35,6 @@ class GameLoop:
                                  Point(randint(-20, 20), randint(-20, 20)), randint(120, 170))
             list.append(asteroid_list, asteroids)
 
-        for count in range(0, 10):
-            bullets = Bullet(self.screen, Point(randint(200, 300), randint(400, 500)), Point(5, 5), 50)
-            list.append(bullet_list, bullets)
-
         self.movement_manager = MovementManager(self.render_pace, 1000, 1000)
         self.collision_manager = CollisionManager()
 
@@ -83,9 +79,6 @@ class GameLoop:
                     self.movement_manager.command_ship2.right = False
                 elif event.key == pygame.K_0:
                     self.movement_manager.command_ship2.shoot = False
-            elif event.type == pygame.QUIT:
-                self.game_active = False
-                pygame.quit()
 
     def update_game(self):
         self.game_state = self.movement_manager.calculate_rotation(self.game_state)
@@ -129,3 +122,8 @@ class GameLoop:
             self.handle_events()
             self.update_game()
             self.render_game()
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.game_active = False
+                    pygame.quit()
