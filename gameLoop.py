@@ -30,6 +30,10 @@ class GameLoop:
         enemy_ship = Ship(self.screen, Point(600, 500), Point(0, 0), -math.pi / 2, 1)
         self.game_state = GameState(ship, enemy_ship, bullet_list, asteroid_list)
 
+        for count in range(0, 8):
+            asteroids = Asteroid(self.screen, Point(randint(0, 900), randint(0, 900)),
+                                 Point(randint(-20, 20), randint(-20, 20)), randint(120, 170))
+            list.append(asteroid_list, asteroids)
 
         for count in range(0, 10):
             bullets = Bullet(self.screen, Point(randint(200, 300), randint(400, 500)), Point(5,5), 50)
