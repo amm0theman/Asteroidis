@@ -15,6 +15,8 @@ class MovementManager:
         self.window_y = window_y
         self.command_ship1: Command = Command()
         self.command_ship2: Command = Command()
+        self.bullet_tracker1: int = 0
+        self.bullet_tracker2: int = 0
 
     def calculate_ship_movement(self, ship: Ship):
         ship.pos += ship.pos_delta * self.renderPace
@@ -95,7 +97,8 @@ class MovementManager:
         return delta
 
     def calculate_shoot(self, game_state: GameState, screen) -> GameState:
-        if self.command_ship1.shoot:
+        if self.command_ship1.shoot and self.bullet_tracker1 < 10:
+            self.bullet_tracker1 += 50
             theta = game_state.my_ship.heading
             magnitude = game_state.my_ship.acceleration
             heading_vector = Point(magnitude * math.cos(theta), magnitude * math.sin(theta))
@@ -105,6 +108,8 @@ class MovementManager:
                 Bullet(screen,
                        Point(game_state.my_ship.pos.x + -12.5, game_state.my_ship.pos.y + -12.5) + (
                                    heading_vector * 15),
-                       heading_vector * 200, 10))
-
+                       heading_vector * 200, 250))
+        else:
+            if self.bullet_tracker1 > 0:
+                self.bullet_tracker1 -= 1
         return game_state

@@ -36,7 +36,7 @@ class GameLoop:
             list.append(asteroid_list, asteroids)
 
         for count in range(0, 10):
-            bullets = Bullet(self.screen, Point(randint(200, 300), randint(400, 500)), Point(5,5), 50)
+            bullets = Bullet(self.screen, Point(randint(200, 300), randint(400, 500)), Point(5, 5), 50)
             list.append(bullet_list, bullets)
 
         self.movement_manager = MovementManager(self.render_pace, 1000, 1000)
