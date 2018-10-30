@@ -79,6 +79,9 @@ class GameLoop:
                     self.movement_manager.command_ship2.right = False
                 elif event.key == pygame.K_0:
                     self.movement_manager.command_ship2.shoot = False
+            elif event.type == pygame.QUIT:
+                self.game_active = False
+                pygame.quit()
 
     def update_game(self):
         self.game_state = self.movement_manager.calculate_rotation(self.game_state)
@@ -122,8 +125,3 @@ class GameLoop:
             self.handle_events()
             self.update_game()
             self.render_game()
-
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.game_active = False
-                    pygame.quit()

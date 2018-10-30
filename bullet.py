@@ -17,4 +17,5 @@ class Bullet(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
     def blitme(self):
-        self.screen.blit(self.image, (self.pos.x, self.pos.y))
+        new_image = (self.pos.x, self.pos.y)
+        self.screen.blit(self.image, new_image)
